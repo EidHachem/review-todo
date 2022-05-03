@@ -1,10 +1,6 @@
 /* eslint-disable import/no-mutable-exports */
-const x = JSON.parse(localStorage.getItem('savedData'));
 let tasks = [];
-
-if (x) {
-  tasks = x;
-}
+const x = localStorage.getItem('savedData') ? JSON.parse(localStorage.getItem('savedData')) : [];
 
 const list = document.querySelector('.li');
 const textareaSelector = document.querySelectorAll('.user-input');
@@ -13,7 +9,7 @@ const form = document.querySelector('form');
 const addTask = (description, completed, index) => {
   tasks.push({ description, completed, index });
   localStorage.setItem('savedData', JSON.stringify(tasks));
-  // window.location.reload();
+  window.location.reload();
   return { description, completed, index };
 };
 
